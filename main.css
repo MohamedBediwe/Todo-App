@@ -284,7 +284,7 @@ body.dark {
 .container.dark::before {
     background-image: url(images/bg-desktop-dark.jpg);
 }
-.container.dark header .image.dark {
+.container.dark header .image {
     background-image: url(images/icon-sun.svg)
 }
 .container.dark .input input {

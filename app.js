@@ -38,7 +38,11 @@ modePicker.addEventListener("click", function () {
     }
 })
 // Function to make the add button work
-
+inputField.addEventListener('keypress', function (e) {
+    if (e.keyCode === 13) {
+        addBtn.click()
+    }
+})
 addBtn.addEventListener('click', function(e) {
 
     if (!inputField.value) return;

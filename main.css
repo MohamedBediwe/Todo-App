@@ -217,6 +217,10 @@ header .image {
     height: 100%;
     background-repeat: no-repeat;
 }
+.container .tasks ul li.hidden,
+.container.dark .tasks ul li.hidden {
+    display: none;
+}
 /* End Tasks */
 /* Start Options */
 .container .options {

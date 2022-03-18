@@ -107,29 +107,25 @@ function countLeft() {
 const all = document.querySelector('.all')
 const comp = document.querySelector('.completed')
 const active = document.querySelector(".active")
-all.addEventListener('click', function () {
-    if (all.classList.contains('shown')) return;
-    all.classList.add('shown')
-    active.classList.remove('shown')
-    comp.classList.remove('shown')
+all.addEventListener('click',() => shuffle(all, comp, active))
+comp.addEventListener('click', () => shuffle(comp, all, active))
+active.addEventListener('click', () => shuffle(active, all, comp))
+// shuffle function
+const shuffle = (target, second, third) => {
+    if (target.classList.contains('shown')) return;
+
+    target.classList.add('shown');
+    second.classList.remove('shown')
+    third.classList.remove('shown')
     document.querySelectorAll('ul li').forEach(item => item.classList.remove('hidden'))
-})
-active.addEventListener('click', function () {
-    if (active.classList.contains('shown')) return;
-    if (comp.classList.contains('shown')) document.querySelectorAll('ul li:not(li.done)').forEach(item => item.classList.remove('hidden'))
-    active.classList.add('shown')
-    comp.classList.remove('shown')
-    all.classList.remove('shown')
-    document.querySelectorAll('ul li.done').forEach(item => item.classList.add('hidden'))
-})
-comp.addEventListener('click', function () {
-    if (comp.classList.contains('shown')) return;
-    if (active.classList.contains('shown')) document.querySelectorAll('ul li.done').forEach(item => item.classList.remove('hidden'))
-    comp.classList.add('shown')
-    all.classList.remove('shown')
-    active.classList.remove('shown')
-    document.querySelectorAll('ul li:not(li.done)').forEach(item => item.classList.add('hidden'))
-})
+    if (target == all) {
+        document.querySelectorAll('ul li').forEach(item => item.classList.remove('hidden'))
+    } else if (target == active) {
+        document.querySelectorAll('ul li.done').forEach(item => item.classList.add('hidden'))
+    } else if(target == comp) {
+        document.querySelectorAll('ul li:not(li.done)').forEach(item => item.classList.add('hidden'))
+    }
+}
 // Function to clear completed Tasks
 clearCompletedBtn.addEventListener('click', function () {
     listElement.innerHTML = ""
